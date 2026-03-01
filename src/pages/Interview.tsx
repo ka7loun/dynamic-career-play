@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Mic, MicOff, Play, AlertTriangle, CheckCircle, BarChart3, ChevronDown } from "lucide-react";
+import { Mic, MicOff, Play, AlertTriangle, CheckCircle, BarChart3, ChevronDown, ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Link } from "react-router-dom";
 
 const transcript = [
   { speaker: "AI", text: "Tell me about a time you had to work with a difficult team member.", type: "question" },
@@ -76,16 +77,14 @@ const Interview = () => {
             <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
               {transcript.map((t, i) => (
                 <div key={i} className={`flex gap-3 ${t.speaker === 'You' ? 'flex-row-reverse' : ''}`}>
-                  <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                    t.speaker === 'AI' ? 'bg-gradient-to-br from-nexus-purple to-nexus-blue text-white' : 'bg-secondary text-foreground'
-                  }`}>
+                  <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${t.speaker === 'AI' ? 'bg-gradient-to-br from-nexus-purple to-nexus-blue text-white' : 'bg-secondary text-foreground'
+                    }`}>
                     {t.speaker === 'AI' ? 'AI' : 'Y'}
                   </div>
-                  <div className={`max-w-[80%] rounded-xl px-4 py-3 text-sm ${
-                    t.type === 'winning' ? 'bg-nexus-green/10 border border-nexus-green/20' :
-                    t.type === 'red-flag' ? 'bg-nexus-red/10 border border-nexus-red/20' :
-                    'bg-secondary/50'
-                  }`}>
+                  <div className={`max-w-[80%] rounded-xl px-4 py-3 text-sm ${t.type === 'winning' ? 'bg-nexus-green/10 border border-nexus-green/20' :
+                      t.type === 'red-flag' ? 'bg-nexus-red/10 border border-nexus-red/20' :
+                        'bg-secondary/50'
+                    }`}>
                     {t.type === 'winning' && <span className="text-xs text-nexus-green font-semibold block mb-1">✦ Winning Moment</span>}
                     {t.type === 'red-flag' && <span className="text-xs text-nexus-red font-semibold block mb-1">⚑ Red Flag</span>}
                     {t.text}
@@ -143,6 +142,20 @@ const Interview = () => {
             </div>
           </div>
         )}
+
+        {/* Phase Navigation */}
+        <div className="mt-12 flex justify-between">
+          <Button asChild variant="outline" className="glass gap-2 hover-lift">
+            <Link to="/careers">
+              <ArrowLeft className="h-4 w-4" /> Previous: The Bridge
+            </Link>
+          </Button>
+          <Button asChild className="bg-gradient-to-r from-nexus-purple to-nexus-blue text-white border-0 hover:opacity-90 hover-lift px-6">
+            <Link to="/simulator">
+              Next: Flight Simulator <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

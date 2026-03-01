@@ -127,7 +127,7 @@ const Landing = () => {
             {phases.map((p, i) => (
               <div
                 key={i}
-                className="group relative rounded-2xl glass p-8 hover:bg-card/80 transition-all duration-300"
+                className="group relative rounded-2xl glass p-8 phase-card"
               >
                 <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${p.color} mb-4`}>
                   <p.icon className="h-6 w-6 text-white" />
@@ -167,9 +167,9 @@ const Landing = () => {
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-nexus-purple to-nexus-blue">
               <Zap className="h-3 w-3 text-white" />
             </div>
-            <span className="font-display text-sm font-bold">NEXUS</span>
+            <span className="font-display text-sm font-bold">TRAIL</span>
           </div>
-          <p className="text-xs text-muted-foreground">© 2026 NEXUS. Built for the future of hiring.</p>
+          <p className="text-xs text-muted-foreground">© 2026 TRAIL. Built for the future of hiring.</p>
         </div>
       </footer>
     </div>

@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { MessageSquare, Mail, ListTodo, Clock, Bell, TrendingUp, Users, AlertCircle } from "lucide-react";
+import { MessageSquare, Mail, ListTodo, Clock, Bell, TrendingUp, Users, AlertCircle, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -46,9 +48,9 @@ const Simulator = () => {
   const [currentDay, setCurrentDay] = useState(3);
 
   const tabs: { key: Tab; icon: typeof MessageSquare; label: string; badge?: number }[] = [
-    { key: 'chat', icon: MessageSquare, label: 'Nexus Chat', badge: 2 },
-    { key: 'mail', icon: Mail, label: 'Nexus Mail', badge: 1 },
-    { key: 'tasks', icon: ListTodo, label: 'Nexus Tasks' },
+    { key: 'chat', icon: MessageSquare, label: 'Trail Chat', badge: 2 },
+    { key: 'mail', icon: Mail, label: 'Trail Mail', badge: 1 },
+    { key: 'tasks', icon: ListTodo, label: 'Trail Tasks' },
   ];
 
   return (
@@ -56,7 +58,7 @@ const Simulator = () => {
       <div className="container px-4">
         <div className="mb-6">
           <p className="text-xs font-semibold uppercase tracking-wider text-nexus-green mb-2">Phase 4 — Career Flight Simulator</p>
-          <h1 className="font-display text-3xl sm:text-4xl font-bold mb-2">NexusOS</h1>
+          <h1 className="font-display text-3xl sm:text-4xl font-bold mb-2">TrailOS</h1>
           <p className="text-muted-foreground">Your simulated corporate workspace. Handle real scenarios.</p>
         </div>
 
@@ -71,10 +73,9 @@ const Simulator = () => {
               <button
                 key={i}
                 onClick={() => setCurrentDay(i)}
-                className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
-                  i === currentDay ? 'bg-gradient-to-br from-nexus-purple to-nexus-blue text-white' :
+                className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${i === currentDay ? 'bg-gradient-to-br from-nexus-purple to-nexus-blue text-white' :
                   i < currentDay ? 'bg-nexus-green/20 text-nexus-green' : 'bg-secondary text-muted-foreground'
-                }`}
+                  }`}
               >
                 {i + 1}
               </button>
@@ -91,9 +92,8 @@ const Simulator = () => {
                 <button
                   key={t.key}
                   onClick={() => setActiveTab(t.key)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    activeTab === t.key ? 'bg-secondary text-foreground' : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === t.key ? 'bg-secondary text-foreground' : 'text-muted-foreground hover:text-foreground'
+                    }`}
                 >
                   <t.icon className="h-4 w-4" />
                   {t.label}
@@ -108,21 +108,19 @@ const Simulator = () => {
                 <div className="p-6 space-y-4">
                   {chatMessages.map((m, i) => (
                     <div key={i} className={`flex gap-3 ${m.type === 'you' ? 'flex-row-reverse' : ''}`}>
-                      <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                        m.type === 'mentor' ? 'bg-nexus-blue/20 text-nexus-blue' :
+                      <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${m.type === 'mentor' ? 'bg-nexus-blue/20 text-nexus-blue' :
                         m.type === 'ghoster' ? 'bg-nexus-orange/20 text-nexus-orange' :
-                        m.type === 'system' ? 'bg-nexus-red/20 text-nexus-red' :
-                        'bg-secondary text-foreground'
-                      }`}>
+                          m.type === 'system' ? 'bg-nexus-red/20 text-nexus-red' :
+                            'bg-secondary text-foreground'
+                        }`}>
                         {m.avatar}
                       </div>
                       <div className={`max-w-[75%] ${m.type === 'system' ? 'w-full max-w-full' : ''}`}>
                         {m.type !== 'you' && <p className="text-xs text-muted-foreground mb-1">{m.from} · {m.time}</p>}
-                        <div className={`rounded-xl px-4 py-2.5 text-sm ${
-                          m.type === 'system' ? 'bg-nexus-red/10 border border-nexus-red/20 text-nexus-red text-center italic' :
+                        <div className={`rounded-xl px-4 py-2.5 text-sm ${m.type === 'system' ? 'bg-nexus-red/10 border border-nexus-red/20 text-nexus-red text-center italic' :
                           m.type === 'you' ? 'bg-gradient-to-r from-nexus-purple/20 to-nexus-blue/20 border border-nexus-purple/20' :
-                          'bg-secondary/50'
-                        }`}>
+                            'bg-secondary/50'
+                          }`}>
                           {m.text}
                         </div>
                       </div>
@@ -163,12 +161,11 @@ const Simulator = () => {
                           <div key={t.id} className="rounded-lg bg-secondary/50 p-3 text-sm cursor-pointer hover:bg-secondary transition-colors">
                             <p className="font-medium mb-2">{t.title}</p>
                             <div className="flex items-center gap-2">
-                              <span className={`text-xs px-1.5 py-0.5 rounded ${
-                                t.priority === 'Critical' ? 'bg-nexus-red/10 text-nexus-red' :
+                              <span className={`text-xs px-1.5 py-0.5 rounded ${t.priority === 'Critical' ? 'bg-nexus-red/10 text-nexus-red' :
                                 t.priority === 'High' ? 'bg-nexus-orange/10 text-nexus-orange' :
-                                t.priority === 'Medium' ? 'bg-nexus-blue/10 text-nexus-blue' :
-                                'bg-muted text-muted-foreground'
-                              }`}>{t.priority}</span>
+                                  t.priority === 'Medium' ? 'bg-nexus-blue/10 text-nexus-blue' :
+                                    'bg-muted text-muted-foreground'
+                                }`}>{t.priority}</span>
                               <span className="text-xs text-muted-foreground">{t.tag}</span>
                             </div>
                           </div>
@@ -229,6 +226,15 @@ const Simulator = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Phase Navigation */}
+        <div className="mt-12 flex justify-start">
+          <Button asChild variant="outline" className="glass gap-2 hover-lift">
+            <Link to="/interview">
+              <ArrowLeft className="h-4 w-4" /> Previous: Stress Test
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

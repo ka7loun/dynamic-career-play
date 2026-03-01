@@ -1,4 +1,5 @@
-import { Upload, Eye, AlertTriangle, TrendingUp, FileText, Github, FolderOpen } from "lucide-react";
+import { Upload, Eye, AlertTriangle, TrendingUp, FileText, Github, FolderOpen, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -140,17 +141,25 @@ const StudentDashboard = () => {
                 <div key={i} className="rounded-xl glass p-5">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-semibold text-sm">{v.title}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      v.severity === 'Critical' ? 'bg-nexus-red/10 text-nexus-red' :
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${v.severity === 'Critical' ? 'bg-nexus-red/10 text-nexus-red' :
                       v.severity === 'High' ? 'bg-nexus-orange/10 text-nexus-orange' :
-                      'bg-muted text-muted-foreground'
-                    }`}>{v.severity}</span>
+                        'bg-muted text-muted-foreground'
+                      }`}>{v.severity}</span>
                   </div>
                   <p className="text-sm text-muted-foreground">{v.desc}</p>
                 </div>
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Phase Navigation */}
+        <div className="mt-12 flex justify-end">
+          <Button asChild className="bg-gradient-to-r from-nexus-purple to-nexus-blue text-white border-0 hover:opacity-90 hover-lift px-6">
+            <Link to="/careers">
+              Next: The Bridge <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

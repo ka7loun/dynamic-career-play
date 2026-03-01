@@ -14,10 +14,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Apply dark mode by default
-if (!document.documentElement.classList.contains('dark')) {
-  document.documentElement.classList.add('dark');
-}
+// Light mode by default (lavender/purple theme)
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

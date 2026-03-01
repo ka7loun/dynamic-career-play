@@ -1,4 +1,4 @@
-import { Target, Clock, Zap, Trophy, ArrowRight, BarChart3 } from "lucide-react";
+import { Target, Clock, Zap, Trophy, ArrowRight, ArrowLeft, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell } from "recharts";
 import { Link } from "react-router-dom";
@@ -60,9 +60,8 @@ const CareerMapping = () => {
           <div className="space-y-3">
             {careerPaths.map((c, i) => (
               <div key={i} className={`rounded-xl glass p-5 flex items-center gap-4 hover:bg-card/80 transition-colors cursor-pointer ${i === 0 ? 'gradient-border glow-purple' : ''}`}>
-                <div className={`flex h-10 w-10 items-center justify-center rounded-lg font-display font-bold text-sm ${
-                  i === 0 ? 'bg-gradient-to-br from-nexus-purple to-nexus-blue text-white' : 'bg-secondary text-muted-foreground'
-                }`}>
+                <div className={`flex h-10 w-10 items-center justify-center rounded-lg font-display font-bold text-sm ${i === 0 ? 'bg-gradient-to-br from-nexus-purple to-nexus-blue text-white' : 'bg-secondary text-muted-foreground'
+                  }`}>
                   #{i + 1}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -121,11 +120,10 @@ const CareerMapping = () => {
             {challenges.map((ch, i) => (
               <div key={i} className="rounded-xl glass p-6 flex flex-col">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    ch.difficulty === 'Hard' ? 'bg-nexus-red/10 text-nexus-red' :
-                    ch.difficulty === 'Medium' ? 'bg-nexus-orange/10 text-nexus-orange' :
-                    'bg-nexus-green/10 text-nexus-green'
-                  }`}>{ch.difficulty}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${ch.difficulty === 'Hard' ? 'bg-nexus-red/10 text-nexus-red' :
+                      ch.difficulty === 'Medium' ? 'bg-nexus-orange/10 text-nexus-orange' :
+                        'bg-nexus-green/10 text-nexus-green'
+                    }`}>{ch.difficulty}</span>
                   <span className="text-xs text-muted-foreground flex items-center gap-1">
                     <Clock className="h-3 w-3" /> {ch.time}
                   </span>
@@ -143,6 +141,20 @@ const CareerMapping = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Phase Navigation */}
+        <div className="mt-12 flex justify-between">
+          <Button asChild variant="outline" className="glass gap-2 hover-lift">
+            <Link to="/dashboard">
+              <ArrowLeft className="h-4 w-4" /> Previous: Digital Mirror
+            </Link>
+          </Button>
+          <Button asChild className="bg-gradient-to-r from-nexus-purple to-nexus-blue text-white border-0 hover:opacity-90 hover-lift px-6">
+            <Link to="/interview">
+              Next: Stress Test <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
